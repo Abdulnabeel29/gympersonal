@@ -4,10 +4,8 @@ import MemberTable from "../assets/components/MemberTable";
 import SearchBar from "../assets/components/SearchBar";
 import MemberForm from "../assets/components/MemberForm";
 import BodyMeasurementsForm from "../assets/components/BodyMeasurementsForm";
-import { FaUserPlus, FaEnvelope, FaUsers, FaUserTimes, FaUserClock, FaChartBar, FaFilter } from "react-icons/fa";
-import { FiUsers, FiUserCheck, FiUserX, FiAlertTriangle, FiMail, FiPlus } from 'react-icons/fi';
+import { FaUsers, FaUserCheck, FaUserTimes, FaUserClock, FaChartBar, FaFilter, FaPlus, FaEnvelope } from "react-icons/fa";
 import "./Members.css";
-import COLORS from "../data/colors";
 
 const Members = () => {
   const [members, setMembers] = useState([]);
@@ -41,10 +39,10 @@ const Members = () => {
       console.error("Error fetching members:", error);
     }
   };
-  
+
   const applyFilters = () => {
     let filtered = [...members];
-  
+
     if (activeFilter === 'expired') {
       filtered = filtered.filter(m => m.expiry_date && new Date(m.expiry_date) < today);
     } else if (activeFilter === 'expiring') {
@@ -55,11 +53,11 @@ const Members = () => {
         return diff >= 0 && diff <= 7;
       });
     }
-  
+
     if (packageFilter !== 'all') {
       filtered = filtered.filter(m => m.package === packageFilter);
     }
-  
+
     setFilteredMembers(filtered);
   };
 
@@ -117,7 +115,7 @@ const Members = () => {
   };
 
   const packageTypes = [...new Set(members.map(m => m.package))];
-  
+
   // Calculate statistics
   const totalMembers = members.length;
   const activeMembers = members.filter(m => {
@@ -135,59 +133,68 @@ const Members = () => {
   return (
     <div className="members-page">
       {/* Hero Section */}
-      <div className="hero-section">
-        <div className="hero-content">
-          <h1>Member Management</h1>
-          <p>An overview of your gym's membership status.</p>
-        </div>
-        <div className="action-buttons">
-          <button className="btn" onClick={() => console.log('Send Reminders clicked!')}>
-            <FiMail />
-            <span>Send Reminders</span>
-          </button>
-          <button className="btn btn-primary" onClick={() => setShowForm(true)}>
-            <FiPlus />
-            <span>Add New Member</span>
-          </button>
+      <div className="home-header">
+        <div className="header-content">
+          <div>
+            <h1>Member Management</h1>
+            <p>An overview of your gym's membership status.</p>
+          </div>
+          <div className="action-buttons">
+            <button
+              className="btn"
+              onClick={handleSMS}
+              disabled={smsLoading}
+            >
+              <FaEnvelope />
+              <span>{smsLoading ? "Sending..." : "Send Reminders"}</span>
+            </button>
+            <button
+              className="btn btn-primary"
+              onClick={() => setShowForm(true)}
+            >
+              <FaPlus />
+              <span>Add New Member</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Statistics Cards */}
-      <div className="stats-grid">
-        <div className="stat-card total">
-          <div className="stat-icon">
-            <FiUsers />
+      <div className="summary-cards">
+        <div className="stat-card-dash users">
+          <div className="icon">
+            <FaUsers />
           </div>
-          <div className="stat-content">
-            <h3>{totalMembers}</h3>
+          <div className="stat-info">
             <p>Total Members</p>
+            <span>{totalMembers}</span>
           </div>
         </div>
-        <div className="stat-card active">
-          <div className="stat-icon">
-            <FiUserCheck />
+        <div className="stat-card-dash staff">
+          <div className="icon">
+            <FaUserCheck />
           </div>
-          <div className="stat-content">
-            <h3>{activeMembers}</h3>
+          <div className="stat-info">
             <p>Active Members</p>
+            <span>{activeMembers}</span>
           </div>
         </div>
-        <div className="stat-card expiring">
-          <div className="stat-icon">
-            <FiAlertTriangle />
+        <div className="stat-card-dash classes">
+          <div className="icon">
+            <FaUserClock />
           </div>
-          <div className="stat-content">
-            <h3>{expiringMembers}</h3>
+          <div className="stat-info">
             <p>Expiring Soon</p>
+            <span>{expiringMembers}</span>
           </div>
         </div>
-        <div className="stat-card expired">
-          <div className="stat-icon">
-            <FiUserX />
+        <div className="stat-card-dash revenue">
+          <div className="icon">
+            <FaUserTimes />
           </div>
-          <div className="stat-content">
-            <h3>{expiredMembers}</h3>
+          <div className="stat-info">
             <p>Expired Members</p>
+            <span>{expiredMembers}</span>
           </div>
         </div>
       </div>
@@ -202,46 +209,48 @@ const Members = () => {
       {/* Search and Controls Section */}
       <div className="controls-section">
         <div className="search-section">
-          <SearchBar onSearch={handleSearch} />
-          <button 
-            className="btn filter-toggle"
+          <div className="search-bar-wrapper">
+            <SearchBar onSearch={handleSearch} />
+          </div>
+          <button
+            className={`btn filter-toggle${showFilters ? " active" : ""}`}
             onClick={() => setShowFilters(!showFilters)}
           >
             <FaFilter />
             <span>Filters</span>
           </button>
         </div>
-        
+
         {showFilters && (
           <div className="filters-panel">
             <div className="filter-group">
               <label>Status Filter:</label>
               <div className="filter-buttons">
-                <button 
-                  onClick={() => setActiveFilter('all')} 
+                <button
+                  onClick={() => setActiveFilter('all')}
                   className={activeFilter === 'all' ? 'active' : ''}
                 >
                   <FaUsers /> All
                 </button>
-                <button 
-                  onClick={() => setActiveFilter('expired')} 
+                <button
+                  onClick={() => setActiveFilter('expired')}
                   className={activeFilter === 'expired' ? 'active' : ''}
                 >
                   <FaUserTimes /> Expired
                 </button>
-                <button 
-                  onClick={() => setActiveFilter('expiring')} 
+                <button
+                  onClick={() => setActiveFilter('expiring')}
                   className={activeFilter === 'expiring' ? 'active' : ''}
                 >
                   <FaUserClock /> Expiring Soon
                 </button>
               </div>
             </div>
-            
+
             <div className="filter-group">
               <label>Package Filter:</label>
-              <select 
-                onChange={(e) => setPackageFilter(e.target.value)} 
+              <select
+                onChange={(e) => setPackageFilter(e.target.value)}
                 className="package-filter"
                 value={packageFilter}
               >

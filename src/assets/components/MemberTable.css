@@ -1,222 +1,22 @@
-/* 
-  MemberTable Final Redesign 
-  Objective: A clean, simple, and robust table design using the app's color palette.
-*/
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #28B295;      /* Mint Teal */
-  --background: #1C1C1E;  /* Charcoal Black */
-  --text: #E3E3E0;        /* Warm Gray */
-  --accent1: #D6F84C;     /* Lime Yellow */
-  --accent2: #FF715B;      /* Sunset Coral */
-  --surface: #2A2A2A;      /* Darker gray for surfaces */
-  --border: #3A3A3C;      /* Subtle border color */
+  --primary: #28B295;
+  --background: #1C1C1E;
+  --text: #E3E3E0;
+  --accent2: #FF715B;
+  --surface: #23272f;
+  --border: #2A2A2A;
 }
 
 .member-table-wrapper {
   background-color: var(--background);
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Poppins', sans-serif;
 }
 
-.table-container {
-  width: 100%;
-  overflow-x: auto; /* Ensures table is responsive on small screens */
-}
-
-.member-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.member-table th {
-  background-color: var(--surface);
-  color: var(--accent1);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.75rem;
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 2px solid var(--primary);
-}
-
-.member-table td {
-  padding: 16px 16px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-  vertical-align: middle;
-  font-size: 0.9rem;
-}
-
-.member-row {
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.member-row:last-child td {
-  border-bottom: none;
-}
-
-.member-row:hover {
-  background-color: var(--surface);
-}
-
-.member-row.selected {
-  background-color: rgba(40, 178, 149, 0.2);
-}
-
-.member-row.expired {
-  background-color: rgba(255, 113, 91, 0.1);
-}
-
-.member-row.expired .member-name-cell {
-  color: var(--accent2);
-}
-
-/* Cell Content Styling */
-.member-name-cell {
-  font-weight: 600;
-  color: var(--text);
-}
-
-.whatsapp-link {
-  color: var(--primary);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: color 0.2s ease;
-}
-
-.whatsapp-link:hover {
-  color: var(--accent1);
-}
-
-.total-amount-cell {
-  font-weight: 600;
-  color: var(--accent1);
-}
-
-.paid-amount-cell {
-  font-weight: 600;
-  color: var(--primary);
-}
-
-.due-amount-cell {
-  font-weight: 600;
-  color: var(--accent2);
-}
-
-/* Cleanup old cell styles */
-.member-info-cell,
-.membership-cell,
-.financials-cell {
-  display: block;
-}
-
-.member-id, .member-contact-info, .package-info, .date-info, .financial-item {
-  display: none;
-}
-
-/* Actions */
-.actions-cell {
-  text-align: right;
-  white-space: nowrap;
-}
-
-.action-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-}
-
-.action-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: #1C1C1E; /* Icon color */
-}
-
-.action-btn svg {
-   width: 28px;
-  height: 28px; 
-}
-
-.action-btn:hover {
-  transform: scale(1.1);
-  filter: brightness(1.1);
-}
-
-.action-btn-sms { background-color: var(--primary); }
-.action-btn-measure { background-color: var(--primary); }
-.action-btn-edit { background-color: var(--accent1); }
-.action-btn-delete { background-color: var(--accent2); }
-
-/* Expanded Details */
-.expanded-row td {
-  background-color: #121212;
-  padding: 1rem 1.5rem;
-}
-
-.details-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1rem;
-}
-
-.details-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.member-details-expanded h4 {
-  color: var(--accent1);
-  border-bottom: none;
-  padding-bottom: 0;
-  margin: 0;
-}
-
-.details-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 0.5rem 1.5rem;
-}
-.detail-section p strong {
-  color: var(--primary);
-  opacity: 0.8;
-}
-
-/* Checkbox */
-.checkbox-header {
-    width: 60px;
-}
-
-.checkbox-cell {
-    text-align: center;
-}
-
-input[type="checkbox"] {
-  accent-color: var(--primary);
-  width: 18px;
-  height: 18px;
-}
-
-/* Table Header / Bulk Actions */
 .table-header {
   display: flex;
   justify-content: space-between;
@@ -236,7 +36,7 @@ input[type="checkbox"] {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
   color: var(--text);
@@ -247,11 +47,11 @@ input[type="checkbox"] {
   background-color: transparent;
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 8px 12px;
+  padding: 7px 12px;
   border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -274,36 +74,209 @@ input[type="checkbox"] {
   opacity: 0.7;
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.member-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+}
+
+.member-table th {
+  background-color: var(--surface);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--primary);
+}
+
+.member-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+  font-size: 0.97rem;
+}
+
+.member-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.member-row:last-child td {
+  border-bottom: none;
+}
+
+.member-row:hover {
+  background-color: #23272f;
+}
+
+.member-row.selected {
+  background-color: rgba(40, 178, 149, 0.13);
+}
+
+.member-row.expired {
+  background-color: rgba(255, 113, 91, 0.09);
+}
+
+.member-row.expired .member-name-cell {
+  color: var(--accent2);
+}
+
+.member-name-cell {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.whatsapp-link {
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.97rem;
+  transition: color 0.2s;
+}
+
+.whatsapp-link:hover {
+  color: #23a484;
+}
+
+.total-amount-cell {
+  font-weight: 600;
+  color: #7fffd4;
+}
+
+.paid-amount-cell {
+  font-weight: 600;
+  color: #28B295;
+}
+
+.due-amount-cell {
+  font-weight: 600;
+  color: var(--accent2);
+}
+
+.actions-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.18s;
+  color: #fff;
+  background: #23272f;
+  font-size: 1.05rem;
+  padding: 0;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.action-btn-sms {
+  background: #28B295;
+}
+.action-btn-measure {
+  background: #2dce89;
+}
+.action-btn-edit {
+  background: #3aafa9;
+}
+.action-btn-delete {
+  background: #FF715B;
+}
+
+.action-btn:hover {
+  transform: scale(1.13);
+  filter: brightness(1.13);
+}
+
+.action-btn-sms:hover,
+.action-btn-measure:hover,
+.action-btn-edit:hover {
+  background: #23272f;
+  color: #28B295;
+}
+.action-btn-delete:hover {
+  background: #23272f;
+  color: #FF715B;
+}
+
+/* Expanded Details */
+.expanded-row td {
+  background-color: #18191b;
+  padding: 1rem 1.5rem;
+}
+
+.member-details-expanded {
+  padding: 0.5rem 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem 1.5rem;
+}
+.detail-section p strong {
+  color: #28B295;
+  opacity: 0.8;
+}
+
+/* Checkbox */
+.checkbox-header {
+  width: 40px;
+}
+
+.checkbox-cell {
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  accent-color: #28B295;
+  width: 16px;
+  height: 16px;
+}
+
 /* Empty State */
 .empty-state {
-    text-align: center;
-    padding: 4rem 0;
+  text-align: center;
+  padding: 3rem 0;
 }
 .empty-state svg {
-    font-size: 3rem;
-    color: var(--primary);
-    opacity: 0.5;
-    margin-bottom: 1rem;
+  font-size: 2.2rem;
+  color: var(--primary);
+  opacity: 0.5;
+  margin-bottom: 1rem;
 }
 .empty-state h3 {
-    font-size: 1.2rem;
-    color: var(--text);
-    margin: 0;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0;
 }
 .empty-state p {
-    color: var(--text);
-    opacity: 0.7;
-}
-
-.package-select {
-  color: #fff4f4 !important;
-  background: #2c2c2c !important;
-  border: 1px solid #ccc;
-  padding: 0.5em;
-  font-size: 1em;
-}
-
-.package-select option {
-  color: #111;
-  background: #d6d6d6;
+  color: var(--text);
+  opacity: 0.7;
 }
