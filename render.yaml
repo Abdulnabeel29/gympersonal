@@ -1,0 +1,34 @@
+services:
+  # Backend API
+  - type: web
+    name: gym-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gym-database
+          property: connectionString
+
+  # Frontend
+  - type: web
+    name: gym-frontend
+    env: static
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://gym-backend.onrender.com
+
+databases:
+  - name: gym-database
+    databaseName: gym_db
+    user: gym_user
+    plan: free 

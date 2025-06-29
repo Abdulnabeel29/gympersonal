@@ -1,0 +1,4 @@
+USE gym_db;
+
+ALTER TABLE settings
+ADD COLUMN expense_limit DECIMAL(10, 2) DEFAULT 100000.00; 

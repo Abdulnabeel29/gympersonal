@@ -1,0 +1,7 @@
+USE gym_db;
+-- Table for Owner Notepad/Leads
+CREATE TABLE IF NOT EXISTS owner_notes (
+  id INT PRIMARY KEY DEFAULT 1,
+  note TEXT,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+); 

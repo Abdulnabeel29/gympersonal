@@ -1,0 +1,417 @@
+/* BusinessInsights.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+.insights-container {
+  padding: 2rem;
+  background-color: #1C1C1E;
+  color: #E3E3E0;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  font-size: 1.5rem;
+  color: #D6F84C;
+}
+
+/* Hero Section */
+.insights-container .hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #28B295 0%, #2A2A2C 100%);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  border: 2px solid #D6F84C;
+  box-shadow: 0 10px 30px rgba(40, 178, 149, 0.2);
+}
+
+.insights-container .hero-section h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+  color: #D6F84C;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.insights-container .hero-section p {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #E3E3E0;
+  opacity: 0.9;
+  max-width: 600px;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border-left: 5px solid;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.stat-card .stat-icon {
+  font-size: 2.5rem;
+  padding: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1C1C1E;
+}
+
+.stat-card .stat-content h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-card .stat-content p {
+  margin: 0;
+  font-size: 1rem;
+  color: #E3E3E0;
+  opacity: 0.8;
+}
+
+/* Color Themes for Stat Cards */
+.stat-card.total-members { border-color: #2196f3; }
+.stat-card.total-members .stat-icon { background: #2196f3; }
+
+.stat-card.revenue { border-color: #28B295; }
+.stat-card.revenue .stat-icon { background: #28B295; }
+
+.stat-card.expense { border-color: #FF715B; }
+.stat-card.expense .stat-icon { background: #FF715B; }
+
+.stat-card.profit { border-color: #D6F84C; }
+.stat-card.profit .stat-icon { background: #D6F84C; }
+
+/* Chart Styles */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.chart-container {
+  background: #2A2A2C;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.chart-container.side-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-container .section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #D6F84C;
+}
+
+.pie-chart-wrapper {
+  position: relative;
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.chart-container.main-chart {
+  height: 500px;
+}
+
+.chart-container canvas {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Responsive Grid for Charts */
+@media (min-width: 992px) {
+  .charts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .charts-grid .main-chart {
+    grid-column: span 2;
+  }
+}
+
+/* Financial Metrics Card */
+.financial-metrics-card {
+  background: #2A2A2C;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.financial-metrics-card .section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #D6F84C;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.metric-item {
+  background-color: #1C1C1E;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #4E4E50;
+}
+
+.metric-item span {
+  display: block;
+  font-size: 1rem;
+  color: #E3E3E0;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.metric-item strong {
+  font-size: 1.5rem;
+  color: #D6F84C;
+  font-weight: 700;
+}
+
+/* Notepad and Tips */
+.note-section, .tips-section {
+  background: #2A2A2C;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.note-section .section-title, .tips-section .section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #D6F84C;
+}
+
+.note-section textarea {
+  width: 100%;
+  height: 120px;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #4E4E50;
+  background-color: #1C1C1E;
+  color: #E3E3E0;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.note-section button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #D6F84C;
+  color: #1C1C1E;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.note-section button:hover {
+  background-color: #c4e83c;
+}
+
+.save-confirmation {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #28B295;
+  font-weight: 600;
+}
+
+.tips-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tips-section ul li {
+  background-color: #1C1C1E;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  border-left: 4px solid #D6F84C;
+}
+
+@media (max-width: 768px) {
+  .insights-container .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  .pie-chart-wrapper {
+    width: 90%;
+  }
+}
+
+/* Fix for chart overflow and new input field */
+.chart-wrapper {
+  position: relative;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.expected-profit-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #2A2A2C;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 0 auto 2rem auto;
+  width: fit-content;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.expected-profit-input label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #D6F84C;
+}
+
+.expected-profit-input input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #4E4E50;
+  background-color: #1C1C1E;
+  color: #E3E3E0;
+  font-size: 1.1rem;
+  width: 150px;
+}
+
+/* Expense Limiter Card */
+.expense-limiter-card {
+  background: #2A2A2C;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.expense-limiter-card .section-title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #D6F84C;
+}
+
+.expense-limiter-card .limiter-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.expense-limiter-card .limiter-input label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #E3E3E0;
+}
+
+.expense-limiter-card .limiter-input input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #4E4E50;
+  background-color: #1C1C1E;
+  color: #E3E3E0;
+  font-size: 1.1rem;
+  width: 150px;
+}
+
+.expense-limiter-card .limiter-input button {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #D6F84C;
+  color: #1C1C1E;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.expense-limiter-card .limiter-input button:hover {
+  background-color: #c4e83c;
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #1C1C1E;
+  border-radius: 8px;
+  height: 25px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border: 1px solid #4E4E50;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #28B295, #D6F84C);
+  border-radius: 8px;
+  transition: width 0.5s ease-in-out;
+}
+
+.expense-limiter-card .limiter-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #E3E3E0;
+}
+
+.expense-limiter-card .limiter-text span:first-child {
+  color: #FF715B;
+}
+
+.expense-limiter-card .limiter-text span:last-child {
+  color: #28B295;
+} 

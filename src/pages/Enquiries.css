@@ -1,0 +1,562 @@
+/* Enquiries.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* General Page Layout */
+.enquiries-page {
+    padding: 2rem;
+    background-color: #1C1C1E;
+    color: #E3E3E0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section */
+.enquiries-page .hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #28B295 0%, #2A2A2C 100%);
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    border: 2px solid #D6F84C;
+    box-shadow: 0 10px 30px rgba(40, 178, 149, 0.2);
+}
+
+.enquiries-page .hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    color: #D6F84C;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.enquiries-page .hero-content p {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #E3E3E0;
+    opacity: 0.9;
+}
+
+.enquiries-page .hero-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.enquiries-page .hero-actions .btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #2A2A2C;
+    background-color: #D6F84C;
+    color: #1C1C1E;
+}
+
+.enquiries-page .hero-actions .btn:hover {
+    background-color: #E3E3E0;
+    color: #1C1C1E;
+    border-color: #E3E3E0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(214, 248, 76, 0.4);
+}
+
+/* Message Banners */
+.message-banner {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+.message-banner.success {
+    background: linear-gradient(135deg, #28B295, #2A9D8A);
+    border: 2px solid #D6F84C;
+}
+
+.message-banner.error {
+    background: linear-gradient(135deg, #FF715B, #E65A49);
+    border: 2px solid #FF715B;
+}
+
+/* Controls Section */
+.enquiries-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1.5rem;
+}
+
+.search-bar {
+    position: relative;
+    flex: 1;
+    max-width: 400px;
+    min-width: 250px;
+}
+
+.search-bar .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
+    color: #28B295;
+    font-size: 1.1rem;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 14px 18px 14px 50px;
+    background: linear-gradient(145deg, #2A2A2C, #1C1C1E);
+    border: 2px solid #28B295;
+    border-radius: 12px;
+    color: #E3E3E0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #D6F84C;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 0 3px rgba(214, 248, 76, 0.2),
+        0 8px 20px rgba(214, 248, 76, 0.3);
+    transform: translateY(-2px);
+}
+
+.search-bar input::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+.enquiries-btn-primary {
+    background: linear-gradient(135deg, #28B295, #2A9D8A);
+    color: #1C1C1E;
+    border: 2px solid #28B295;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(40, 178, 149, 0.4);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.enquiries-btn-primary:hover {
+    background: linear-gradient(135deg, #D6F84C, #C4E83C);
+    color: #1C1C1E;
+    border-color: #D6F84C;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(214, 248, 76, 0.5);
+}
+
+.enquiries-btn-secondary {
+    background: linear-gradient(135deg, #6B7280, #4B5563);
+    color: #E3E3E0;
+    border: 2px solid #6B7280;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(107, 114, 128, 0.4);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.enquiries-btn-secondary:hover {
+    background: linear-gradient(135deg, #9CA3AF, #6B7280);
+    color: #1C1C1E;
+    border-color: #9CA3AF;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(156, 163, 175, 0.5);
+}
+
+/* Table Section */
+.table-container {
+    background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid #28B295;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.enquiries-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #E3E3E0;
+}
+
+.enquiries-table th {
+    background: linear-gradient(135deg, #28B295, #2A9D8A);
+    color: #1C1C1E;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    border-bottom: 2px solid #D6F84C;
+}
+
+.enquiries-table td {
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    transition: all 0.3s ease;
+}
+
+.enquiries-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.enquiries-table tbody tr:hover {
+    background: linear-gradient(135deg, rgba(40, 178, 149, 0.1), rgba(42, 42, 44, 0.8));
+    transform: scale(1.01);
+}
+
+.email-text {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.2rem;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid;
+}
+
+.status-new { 
+    background: linear-gradient(135deg, #3498DB, #2980B9);
+    color: #fff;
+    border-color: #3498DB;
+}
+
+.status-follow-up { 
+    background: linear-gradient(135deg, #F1C40F, #F39C12);
+    color: #1C1C1E;
+    border-color: #F1C40F;
+}
+
+.status-converted { 
+    background: linear-gradient(135deg, #2ECC71, #27AE60);
+    color: #fff;
+    border-color: #2ECC71;
+}
+
+.status-lost { 
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    color: #fff;
+    border-color: #E74C3C;
+}
+
+/* Action Buttons */
+.enquiries-action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.enquiries-action-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.enquiries-edit-btn { 
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.enquiries-delete-btn { 
+    color: #FF715B;
+    background: rgba(255, 113, 91, 0.1);
+    border: 1px solid rgba(255, 113, 91, 0.3);
+}
+
+.enquiries-edit-btn:hover { 
+    background: rgba(40, 178, 149, 0.2);
+    color: #D6F84C;
+    transform: scale(1.1);
+    border-color: #28B295;
+}
+
+.enquiries-delete-btn:hover { 
+    background: rgba(255, 113, 91, 0.2);
+    color: #FFFFFF;
+    transform: scale(1.1);
+    border-color: #FF715B;
+}
+
+/* Loading and No-results */
+.loading-row, .no-results-row {
+    text-align: center;
+    padding: 3rem;
+    font-style: italic;
+    color: #888;
+    font-size: 1.1rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid #28B295;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* For Firefox */
+.modal-content {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #28B295;
+}
+
+.modal-header h2 {
+    color: #D6F84C;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.close-btn {
+    background: linear-gradient(135deg, #FF715B, #E65A49);
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background: linear-gradient(135deg, #E65A49, #D6453A);
+    transform: scale(1.1);
+}
+
+.enquiries-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.enquiries-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.enquiries-form-group label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #D6F84C;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.enquiries-form-group input,
+.enquiries-form-group textarea,
+.enquiries-form-group select {
+    padding: 14px 18px;
+    background: linear-gradient(145deg, #2A2A2C, #1C1C1E);
+    border: 2px solid rgba(40, 178, 149, 0.4);
+    border-radius: 12px;
+    color: #E3E3E0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.enquiries-form-group input:focus,
+.enquiries-form-group textarea:focus,
+.enquiries-form-group select:focus {
+    outline: none;
+    border-color: #D6F84C;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 0 0 3px rgba(214, 248, 76, 0.2),
+        0 8px 20px rgba(214, 248, 76, 0.3);
+    transform: translateY(-2px);
+}
+
+.enquiries-form-group input::placeholder,
+.enquiries-form-group textarea::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+.enquiries-form-group select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23D6F84C' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+}
+
+.enquiries-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.enquiries-form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.enquiries-form-actions .enquiries-btn-primary {
+    margin: 0;
+}
+
+.enquiries-form-actions .enquiries-btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+.enquiries-form-actions .enquiries-btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .enquiries-page .hero-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .enquiries-page .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .enquiries-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-bar {
+        min-width: auto;
+    }
+    
+    .enquiries-form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+} 

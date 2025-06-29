@@ -1,0 +1,71 @@
+USE gym_db;
+CREATE TABLE members (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  member_id VARCHAR(50) NOT NULL UNIQUE,
+  name VARCHAR(100) NOT NULL,
+  whatsapp VARCHAR(15),
+  join_date DATE,
+  expiry_date DATE,
+  package VARCHAR(100),
+  total_amount DECIMAL(10,2),
+  paid_amount DECIMAL(10,2),
+  pending_amount DECIMAL(10,2)
+);
+CREATE TABLE staff (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  role VARCHAR(100) NOT NULL,
+  phone VARCHAR(15),
+  email VARCHAR(100),
+  address TEXT,
+  photo VARCHAR(255),
+  status VARCHAR(20) DEFAULT 'Active',
+  salary DECIMAL(10, 2) DEFAULT 0.00,
+  bonus DECIMAL(10, 2) DEFAULT 0.00,
+  salary_status VARCHAR(20) DEFAULT 'Pending'
+);
+CREATE TABLE inventory (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  stock INT NOT NULL,
+  category VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE finances (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  date DATE NOT NULL,
+  type VARCHAR(10) CHECK (type IN ('income', 'expense')) NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  category VARCHAR(100) NOT NULL,
+  payment VARCHAR(50) NOT NULL,
+  description TEXT
+);
+
+
+CREATE TABLE schedule (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  date DATE NOT NULL,
+  member_name VARCHAR(100) NOT NULL,
+  category VARCHAR(100) NOT NULL,
+  trainer VARCHAR(100),
+  time TIME NOT NULL
+);
+
+CREATE TABLE otp_verification (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(100) NOT NULL,
+  otp VARCHAR(10) NOT NULL,
+  expires_at DATETIME NOT NULL,
+  verified BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE admin_settings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  phone VARCHAR(15),
+  passkey VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);

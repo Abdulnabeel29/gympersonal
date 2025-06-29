@@ -1,0 +1,347 @@
+/* Sidebar.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
+  color: #E3E3E0;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #28B295;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #28B295;
+  background: linear-gradient(135deg, #28B295 0%, #2A9D8A 100%);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1C1C1E;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-nav {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.sidebar-nav a,
+.settings-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #E3E3E0;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.sidebar-nav a:hover,
+.settings-link:hover,
+.theme-toggle:hover {
+  background: linear-gradient(135deg, #28B295 0%, #2A9D8A 100%);
+  color: #1C1C1E;
+  border-color: #D6F84C;
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.3);
+}
+
+.sidebar-nav a.active {
+  background: linear-gradient(135deg, #D6F84C 0%, #C4E83C 100%);
+  color: #1C1C1E;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(214, 248, 76, 0.4);
+  border-color: #D6F84C;
+}
+
+.sidebar-nav a svg,
+.settings-link svg,
+.theme-toggle svg {
+  min-width: 20px;
+  color: inherit;
+}
+
+/* Dropdown Styles */
+.nav-dropdown {
+  margin-bottom: 0.5rem;
+}
+
+.nav-dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: 1px solid transparent;
+  color: #E3E3E0;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-dropdown-btn:hover {
+  background: linear-gradient(135deg, #28B295 0%, #2A9D8A 100%);
+  color: #1C1C1E;
+  border-color: #D6F84C;
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.3);
+}
+
+.nav-dropdown-btn svg:first-child {
+  min-width: 20px;
+  margin-right: 1rem;
+  color: inherit;
+}
+
+.nav-dropdown-btn svg:last-child {
+  min-width: 16px;
+  transition: transform 0.3s ease;
+  color: inherit;
+}
+
+.nav-dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+  margin-left: 1rem;
+}
+
+.nav-dropdown-content.open {
+  max-height: 250px;
+}
+
+.nav-dropdown-content a {
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
+  border: 1px solid #28B295;
+  color: #E3E3E0;
+  transition: all 0.3s ease;
+}
+
+.nav-dropdown-content a:hover {
+  background: linear-gradient(135deg, #28B295 0%, #2A9D8A 100%);
+  border-color: #D6F84C;
+  color: #1C1C1E;
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.3);
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 2px solid #28B295;
+  background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
+}
+
+.contact-info {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(40, 178, 149, 0.3);
+}
+
+.contact-info h4 {
+  color: #D6F84C;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contact-icons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #E3E3E0;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
+}
+
+.contact-link:hover {
+  color: #D6F84C;
+  background: rgba(214, 248, 76, 0.2);
+  border-color: #D6F84C;
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 4px 15px rgba(214, 248, 76, 0.3);
+}
+
+.contact-link svg {
+  color: inherit;
+}
+
+.sidebar-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  background: none;
+  border: 1px solid transparent;
+  color: #E3E3E0;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.theme-toggle:hover {
+  background: linear-gradient(135deg, #28B295 0%, #2A9D8A 100%);
+  color: #1C1C1E;
+  border-color: #D6F84C;
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.3);
+}
+
+.menu-btn, .close-btn {
+  display: none;
+  background: linear-gradient(135deg, #28B295 0%, #2A9D8A 100%);
+  border: 2px solid #D6F84C;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #1C1C1E;
+  position: absolute;
+  z-index: 1100;
+  border-radius: 8px;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.3);
+}
+
+.menu-btn:hover, .close-btn:hover {
+  background: linear-gradient(135deg, #D6F84C 0%, #C4E83C 100%);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(214, 248, 76, 0.4);
+}
+
+.menu-btn {
+  top: 1rem;
+  left: 1rem;
+}
+
+.close-btn {
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+/* Desktop first - sidebar is open by default */
+
+/* Tablet and Mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* .sidebar.closed is the default state */
+  
+  .menu-btn {
+    display: block;
+    position: fixed;
+  }
+
+  .close-btn {
+    display: block;
+  }
+}
+
+.help-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #E3E3E0;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(214, 248, 76, 0.1) 0%, rgba(28, 28, 30, 0.8) 100%);
+  border-color: #D6F84C;
+}
+
+.help-link:hover {
+  background: linear-gradient(135deg, #D6F84C 0%, #C4E83C 100%);
+  color: #1C1C1E;
+  border-color: #D6F84C;
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(214, 248, 76, 0.4);
+}
+
+.help-link.active {
+  background: linear-gradient(135deg, #D6F84C 0%, #C4E83C 100%);
+  color: #1C1C1E;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(214, 248, 76, 0.4);
+  border-color: #D6F84C;
+}
+
+.help-link svg {
+  min-width: 20px;
+  color: inherit;
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  color: #4267B2; /* Example color, adjust as needed */
+  transition: color 0.2s;
+}
+.contact-icon:hover {
+  color: #e1306c; /* Example hover color for Instagram */
+}
