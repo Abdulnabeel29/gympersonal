@@ -1,6 +1,6 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
-import "./MemberTable.css";
+import "../../pages/Members.css";
 
 const SearchBar = ({ onSearch }) => {
   return (

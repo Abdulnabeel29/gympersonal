@@ -40,7 +40,7 @@
 .btn {
   background: #23272f;
   color: #28B295;
-  border: 1.5px solid #28B295;
+  border: none; /* removed teal border */
   border-radius: 8px;
   font-weight: 600;
   font-size: 1rem;
@@ -58,7 +58,7 @@
 .btn.btn-primary {
   background: #28B295;
   color: #23272f;
-  border: 1.5px solid #28B295;
+  border: none; /* removed teal border */
 }
 .btn.btn-primary:hover {
   background: #23a484;
@@ -162,7 +162,7 @@
   min-width: 0;
   background: #23272f;
   color: #e3e3e0;
-  border: 1.5px solid #28B295;
+  border: none; /* removed teal border */
   border-radius: 10px;
   padding: 12px 18px;
   font-size: 1rem;
@@ -178,6 +178,7 @@
   white-space: nowrap;
   justify-content: center;
   display: flex;
+  border: none; /* removed teal border */
 }
 
 /* Filters Panel */
@@ -188,7 +189,7 @@
   margin-top: 1rem;
   display: flex;
   gap: 2rem;
-  border: 1px solid #28B295;
+  border: none; /* removed teal border */
 }
 .filter-group {
   display: flex;
@@ -201,12 +202,14 @@
 }
 .filter-buttons {
   display: flex;
+  border-radius: 10px;
+  height: 40px;
   gap: 0.5rem;
 }
 .filter-buttons button {
   background: #23272f;
   color: #b0b3b8;
-  border: 1px solid #28B295;
+  border: none;
   padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
@@ -224,10 +227,11 @@
 .package-filter {
   background: #23272f;
   color: #b0b3b8;
-  border: 1px solid #28B295;
+  height: 40px;
   padding: 8px 12px;
   border-radius: 6px;
   font-weight: 600;
+  border: none; /* removed teal border */
 }
 
 /* Results Summary */
@@ -239,7 +243,8 @@
   padding: 1rem 1.5rem;
   border-radius: 12px;
   margin-bottom: 1.5rem;
-  border: 1px solid #28B295;
+  border: none; /* removed teal border */
+  box-shadow: 0 1px 4px #0001;
 }
 .results-info {
   display: flex;
@@ -262,5 +267,5 @@
   background: #23272f;
   border-radius: 16px;
   padding: 2rem;
-  border: 1px solid #28B295;
+  border: none; /* removed teal border */
 }
