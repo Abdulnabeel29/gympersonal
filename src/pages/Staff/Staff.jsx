@@ -92,7 +92,7 @@ const Staff = () => {
     setIsEditing(false);
     setShowAddForm(true);
   };
-
+  
   // Calculate stats
   const totalStaff = staffList.length;
   const activeStaff = staffList.filter(staff => staff.status === 'Active').length;

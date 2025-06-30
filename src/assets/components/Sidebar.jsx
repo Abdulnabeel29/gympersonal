@@ -104,10 +104,6 @@ const Sidebar = () => {
         </nav>
         <div className="sidebar-footer">
           <div className="sidebar-controls">
-            <button className="theme-toggle" onClick={toggleTheme}>
-              {theme === 'dark' ? <FaSun /> : <FaMoon />}
-              <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-            </button>
             <NavLink to="/settings" className="settings-link" onClick={closeSidebarOnMobile}>
               <FaCog /> <span>Settings</span>
             </NavLink>
