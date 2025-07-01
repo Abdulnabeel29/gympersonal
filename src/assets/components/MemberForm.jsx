@@ -83,6 +83,11 @@ const MemberForm = ({ member, onSave, onClose }) => {
     if (name === "total_amount" || name === "paid_amount") {
       val = value === "" ? "" : Number(value);
     }
+    // Restrict whatsapp to 10 digits only (numbers only)
+    if (name === "whatsapp") {
+      // Remove non-digits and limit to 10
+      val = value.replace(/\D/g, "").slice(0, 10);
+    }
     setForm((prev) => ({ ...prev, [name]: val }));
   };
 
@@ -134,6 +139,9 @@ const MemberForm = ({ member, onSave, onClose }) => {
               placeholder="10-digit WhatsApp/mobile number"
               pattern="^\d{10}$"
               title="Enter a valid 10-digit number"
+              maxLength={10}
+              inputMode="numeric"
+              autoComplete="off"
             />
           </div>
         </div>
