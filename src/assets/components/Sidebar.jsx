@@ -164,14 +164,10 @@ const Sidebar = () => {
                   <span>Email</span>
                 </a>
               </div>
+              
             </div>
-          </div>
-        </nav>
-
-        <div className="sidebar-footer">
-          
-          
-          <NavLink 
+            <div>
+                <NavLink 
             to="/settings" 
             className={({ isActive }) => isActive ? 'settings-link active' : 'settings-link'} 
             onClick={closeSidebarOnMobile}
@@ -182,6 +178,12 @@ const Sidebar = () => {
             <span className="nav-text">Settings</span>
             <div className="nav-indicator"></div>
           </NavLink>
+              </div>
+          </div>
+        </nav>
+
+        <div className="sidebar-footer">
+          
         </div>
       </div>
       
