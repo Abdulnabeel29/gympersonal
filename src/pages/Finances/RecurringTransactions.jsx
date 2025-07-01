@@ -245,9 +245,9 @@ const RecurringTransactions = () => {
                       placeholder="e.g., Monthly Rent"
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="form-group full-width">
                     <label>Type *</label>
-                    <div className="type-buttons">
+                    <div className="type-buttons full-width">
                       <button
                         type="button"
                         className={`type-btn income ${form.type === 'income' ? 'active' : ''}`}
@@ -479,4 +479,4 @@ const RecurringTransactions = () => {
   );
 };
 
-export default RecurringTransactions; 
+export default RecurringTransactions;

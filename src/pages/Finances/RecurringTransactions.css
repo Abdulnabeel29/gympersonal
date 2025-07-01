@@ -9,6 +9,43 @@
   min-height: 100vh;
 }
 
+/* ...existing code... */
+
+.recurring-transactions .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.recurring-transactions .type-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.recurring-transactions .type-buttons.full-width {
+  width: 100%;
+}
+
+.recurring-transactions .type-btn {
+  flex: 1;
+  width: 100%;
+  padding: 1.1rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: 2px solid #28B295;
+  border-radius: 12px;
+  background: #1C1C1E;
+  color: #E3E3E0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.08);
+}
+
+/* ...rest of your existing CSS... */
 /* Header Section */
 .recurring-transactions .header {
   display: flex;
@@ -16,18 +53,18 @@
   align-items: center;
   margin-bottom: 2rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #28B295 0%, #2A2A2C 100%);
-  border-radius: 16px;
-  border: 2px solid #D6F84C;
-  box-shadow: 0 8px 30px rgba(40, 178, 149, 0.2);
+  background: linear-gradient(135deg, #23272f 0%, #1C1C1E 100%);
+  border-radius: 20px;
+  border: none !important;
+  box-shadow: 0 10px 30px rgba(40, 178, 149, 0.15);
 }
 
 .recurring-transactions .header h2 {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 800;
   margin: 0;
-  color: #D6F84C;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: #28B295;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.18);
 }
 
 .recurring-transactions .header-actions {
@@ -46,29 +83,30 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.08);
+  border: none;
 }
 
 .recurring-transactions .process-btn {
-  background: linear-gradient(135deg, #D6F84C, #C4E83C);
-  color: #1C1C1E;
-  border: 2px solid #D6F84C;
+  background: #23272f;
+  color: #28B295;
 }
 
-.recurring-transactions .process-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(214, 248, 76, 0.4);
+.recurring-transactions .process-btn:hover,
+.recurring-transactions .process-btn:focus {
+  background: #28B295;
+  color: #23272f;
 }
 
 .recurring-transactions .add-btn {
-  background: linear-gradient(135deg, #28B295, #2A9D8A);
-  color: #FFFFFF;
-  border: 2px solid #28B295;
+  background: #28B295;
+  color: #23272f;
 }
 
-.recurring-transactions .add-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(40, 178, 149, 0.4);
+.recurring-transactions .add-btn:hover,
+.recurring-transactions .add-btn:focus {
+  background: #1e8870;
+  color: #fff;
 }
 
 /* Messages */
@@ -78,18 +116,19 @@
   margin-bottom: 1.5rem;
   text-align: center;
   font-weight: 600;
+  border: none;
 }
 
 .recurring-transactions .message.success {
-  background-color: rgba(40, 178, 149, 0.2);
+  background-color: rgba(40, 178, 149, 0.13);
   color: #28B295;
   border: 1px solid #28B295;
 }
 
 .recurring-transactions .message.error {
-  background-color: rgba(255, 113, 91, 0.2);
-  color: #FF715B;
-  border: 1px solid #FF715B;
+  background-color: rgba(231, 76, 60, 0.13);
+  color: #E74C3C;
+  border: 1px solid #E74C3C;
 }
 
 /* Form Overlay */
@@ -99,7 +138,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,15 +147,15 @@
 }
 
 .recurring-transactions .recurring-form-container {
-  background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
-  border-radius: 16px;
-  padding: 2rem;
-  max-width: 800px;
+  background: #23272f;
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 700px;
   width: 90%;
   max-height: 90vh;
   overflow-y: auto;
-  border: 2px solid #28B295;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: none;
+  box-shadow: 0 10px 30px rgba(40, 178, 149, 0.15);
 }
 
 .recurring-transactions .recurring-form-container::-webkit-scrollbar {
@@ -125,11 +164,11 @@
 
 .recurring-transactions .recurring-form-container h3 {
   margin: 0 0 2rem 0;
-  color: #D6F84C;
-  font-size: 2rem;
+  color: #28B295;
+  font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.18);
 }
 
 /* Form Sections */
@@ -138,17 +177,19 @@
 }
 
 .recurring-transactions .form-section-title {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #D6F84C;
+  color: #28B295;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #28B295;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .recurring-transactions .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -165,6 +206,11 @@
 
 .recurring-transactions .form-group label {
   margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #28B295;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .recurring-transactions .form-group input,
@@ -173,13 +219,13 @@
 .recurring-transactions .type-buttons {
   width: 100%;
   padding: 1rem;
-  border: 1px solid #4E4E50;
-  border-radius: 8px;
-  background-color: #2C2C2E;
-  color: #F5F5F7;
+  border: 2px solid #23272f;
+  border-radius: 12px;
+  background-color: #1C1C1E;
+  color: #E3E3E0;
   font-size: 1rem;
   font-family: 'Poppins', sans-serif;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s;
   box-sizing: border-box;
 }
 
@@ -187,15 +233,15 @@
 .recurring-transactions .form-group select:focus,
 .recurring-transactions .form-group textarea:focus {
   outline: none;
-  border-color: #0A84FF;
-  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.25);
+  border-color: #28B295;
+  box-shadow: 0 0 0 2px rgba(40, 178, 149, 0.12);
 }
 
 /* Dropdown styling */
 .recurring-transactions .form-group select {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23D6F84C' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2328B295' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1.5em 1.5em;
@@ -203,7 +249,7 @@
 }
 
 .recurring-transactions .form-group select option {
-  background: #2A2A2C;
+  background: #23272f;
   color: #E3E3E0;
   padding: 0.5rem;
   border: none;
@@ -211,7 +257,7 @@
 
 .recurring-transactions .form-group select option:hover {
   background: #28B295;
-  color: #FFFFFF;
+  color: #23272f;
 }
 
 /* Uniform form spacing */
@@ -229,7 +275,7 @@
 /* Textarea specific styling */
 .recurring-transactions .form-group textarea {
   resize: vertical;
-  min-height: 100px;
+  min-height: 80px;
   line-height: 1.5;
 }
 
@@ -243,66 +289,45 @@
   font-weight: 600;
 }
 
-/* Staff dropdown special styling */
-.recurring-transactions .form-group select[name="staff_id"] {
-  border-color: #3498DB;
-}
-
-.recurring-transactions .form-group select[name="staff_id"]:focus {
-  border-color: #D6F84C;
-}
-
-/* Category dropdown styling */
-.recurring-transactions .form-group select[name="category"] {
-  border-color: #E67E22;
-}
-
-.recurring-transactions .form-group select[name="category"]:focus {
-  border-color: #D6F84C;
-}
-
-/* Payment method dropdown styling */
-.recurring-transactions .form-group select[name="payment"] {
-  border-color: #9B59B6;
-}
-
-.recurring-transactions .form-group select[name="payment"]:focus {
-  border-color: #D6F84C;
-}
-
-/* Frequency dropdown styling */
-.recurring-transactions .form-group select[name="frequency"] {
-  border-color: #F39C12;
-}
-
-.recurring-transactions .form-group select[name="frequency"]:focus {
-  border-color: #D6F84C;
-}
-
+/* Type Selector */
 .recurring-transactions .type-buttons {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
-
 .recurring-transactions .type-btn {
-  height: auto;
-  padding: 0.75rem;
-  font-size: 0.9rem;
+  flex: 1;
+  padding: 1.1rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: 2px solid #28B295;
+  border-radius: 12px;
+  background: #1C1C1E;
+  color: #E3E3E0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.08);
 }
-
+.recurring-transactions .type-btn:hover {
+  background: #28B295;
+  color: #23272f;
+}
 .recurring-transactions .type-btn.active.income {
-  background-color: #34C759;
-  border-color: #34C759;
-  color: #FFFFFF;
+  background: #28B295;
+  color: #23272f;
+  border-color: #28B295;
 }
-
 .recurring-transactions .type-btn.active.expense {
-  background-color: #FF3B30;
-  border-color: #FF3B30;
-  color: #FFFFFF;
+  background: #E74C3C;
+  color: #fff;
+  border-color: #E74C3C;
 }
 
+/* Form Actions */
 .recurring-transactions .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -316,18 +341,31 @@
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.95rem;
+  border: none;
 }
 
 .recurring-transactions .cancel-btn {
-  background-color: #2C2C2E;
-  color: #F5F5F7;
+  background-color: #23272f;
+  color: #E3E3E0;
+  border: 2px solid #28B295;
+}
+
+.recurring-transactions .cancel-btn:hover {
+  background: #28B295;
+  color: #23272f;
 }
 
 .recurring-transactions .save-btn {
-  background-color: #0A84FF;
-  color: #FFFFFF;
+  background-color: #28B295;
+  color: #23272f;
 }
 
+.recurring-transactions .save-btn:hover {
+  background: #1e8870;
+  color: #fff;
+}
+
+/* Transactions List */
 .recurring-transactions .transactions-list {
   display: grid;
   gap: 1rem;
@@ -340,10 +378,15 @@
   font-size: 1.1rem;
 }
 
+/* Empty State Styling */
 .recurring-transactions .empty-state {
   text-align: center;
   padding: 3rem;
   color: #E3E3E0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .recurring-transactions .empty-state svg {
@@ -358,19 +401,57 @@
   color: #E3E3E0;
 }
 
+/* Sleek, centered, smaller add button */
+.recurring-transactions .empty-state .add-btn {
+  margin: 0 auto;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  border-radius: 8px;
+  background: #28B295;
+  color: #23272f;
+  border: none;
+  box-shadow: 0 2px 8px rgba(40,178,149,0.10);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  min-width: 0;
+  max-width: 260px;
+}
+
+.recurring-transactions .empty-state .add-btn svg {
+  color: #23272f !important;
+  font-size: 1.1em;
+  vertical-align: middle;
+  transition: color 0.18s;
+}
+
+.recurring-transactions .empty-state .add-btn:hover,
+.recurring-transactions .empty-state .add-btn:focus {
+  background: #1e8870;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(40,178,149,0.16);
+}
+
+.recurring-transactions .empty-state .add-btn:hover svg,
+.recurring-transactions .empty-state .add-btn:focus svg {
+  color: #fff !important;
+}
+
 .recurring-transactions .transaction-card {
-  background: linear-gradient(145deg, #2A2A2C 0%, #1C1C1E 100%);
+  background: #23272f;
   border-radius: 16px;
   padding: 1.5rem;
   border: 2px solid #28B295;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(40, 178, 149, 0.12);
   cursor: pointer;
 }
 
 .recurring-transactions .transaction-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(40, 178, 149, 0.3);
+  box-shadow: 0 8px 30px rgba(40, 178, 149, 0.18);
 }
 
 .recurring-transactions .transaction-card.active {
@@ -403,7 +484,7 @@
   margin: 0;
   font-size: 1.3rem;
   font-weight: 700;
-  color: #D6F84C;
+  color: #28B295;
 }
 
 .recurring-transactions .transaction-actions {
@@ -449,8 +530,8 @@
 }
 
 .recurring-transactions .process-one-btn {
-  background-color: #D6F84C;
-  color: #1C1C1E;
+  background-color: #28B295;
+  color: #23272f;
 }
 
 .recurring-transactions .process-one-btn:disabled {
@@ -473,7 +554,7 @@
 .recurring-transactions .delete-btn:hover, 
 .recurring-transactions .process-one-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.08);
 }
 
 .recurring-transactions .transaction-details {
@@ -496,8 +577,8 @@
 .recurring-transactions .amount {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #D6F84C;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  color: #28B295;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.18);
 }
 
 .recurring-transactions .type-badge {
@@ -510,15 +591,15 @@
 }
 
 .recurring-transactions .type-badge.income {
-  background-color: rgba(40, 178, 149, 0.2);
+  background-color: rgba(40, 178, 149, 0.13);
   color: #28B295;
   border: 1px solid #28B295;
 }
 
 .recurring-transactions .type-badge.expense {
-  background-color: rgba(255, 113, 91, 0.2);
-  color: #FF715B;
-  border: 1px solid #FF715B;
+  background-color: rgba(231, 76, 60, 0.13);
+  color: #E74C3C;
+  border: 1px solid #E74C3C;
 }
 
 .recurring-transactions .frequency, 
@@ -532,7 +613,7 @@
 
 .recurring-transactions .staff {
   font-size: 0.9rem;
-  color: #D6F84C;
+  color: #28B295;
   font-weight: 600;
 }
 
@@ -575,75 +656,3 @@
     gap: 0.25rem;
   }
 }
-
-.recurring-transactions .recurring-container {
-  background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
-  border-radius: 16px;
-  padding: 2rem;
-  border: 2px solid #28B295;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-}
-
-.recurring-transactions .recurring-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  background: linear-gradient(145deg, #2A2A2C 0%, #1C1C1E 100%);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.recurring-transactions .recurring-table th, 
-.recurring-transactions .recurring-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #4E4E50;
-}
-
-.recurring-transactions .recurring-table th {
-  background: linear-gradient(135deg, #28B295, #2A9D8A);
-  color: #1C1C1E;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.recurring-transactions .recurring-table tr:last-child td {
-  border-bottom: none;
-}
-
-.recurring-transactions .recurring-table tr {
-  transition: all 0.3s ease;
-}
-
-.recurring-transactions .recurring-table tr:hover {
-  background-color: rgba(40, 178, 149, 0.1);
-}
-
-.recurring-transactions button {
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.recurring-transactions button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.recurring-transactions h2 {
-  color: #D6F84C;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-} 
