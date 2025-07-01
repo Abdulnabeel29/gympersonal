@@ -193,9 +193,6 @@ const Settings = () => {
           <h1>Settings & Configuration</h1>
           <p>Manage your gym's settings and administrative access.</p>
         </div>
-        <div className="hero-actions">
-          <FiSettings size={24} />
-        </div>
       </div>
 
       <div className="settings-grid">
@@ -308,10 +305,12 @@ const Settings = () => {
                 Enable Notifications
               </label>
             </div>
+            <div className="form-group checkbox-group">
             <button type="submit" className="btn" disabled={loading}>
               <FiSave />
               {loading ? 'Loading...' : 'Save Settings'}
             </button>
+            </div>
             {saveMsg && <div className={`message ${saveMsg.includes('Failed') ? 'error' : 'success'}`}>{saveMsg}</div>}
           </form>
         </div>
