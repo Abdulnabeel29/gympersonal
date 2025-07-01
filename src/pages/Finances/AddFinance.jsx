@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
   FaMoneyBillWave,
@@ -11,14 +11,6 @@ import {
   FaWifi,
   FaMobileAlt,
   FaPlus,
-  FaUniversity,
-  FaPlusCircle,
-  FaMinusCircle,
-  FaRegCalendarCheck,
-  FaHistory,
-  FaStepBackward,
-  FaEdit,
-  FaEllipsisH,
 } from "react-icons/fa";
 import "./AddFinance.css";
 import { useNavigate } from "react-router-dom";
@@ -45,20 +37,16 @@ const AddFinance = () => {
 
   const navigate = useNavigate();
 
-  const formatDate = (date) => {
-    return new Date(date).toISOString().split("T")[0];
-  };
+  const formatDate = (date) => new Date(date).toISOString().split("T")[0];
 
   const getYesterday = () => {
-    const today = new Date();
-    const yesterday = new Date(today);
+    const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     return formatDate(yesterday);
   };
 
   const getDayBefore = () => {
-    const today = new Date();
-    const dayBefore = new Date(today);
+    const dayBefore = new Date();
     dayBefore.setDate(dayBefore.getDate() - 2);
     return formatDate(dayBefore);
   };
@@ -71,7 +59,7 @@ const AddFinance = () => {
       setTimeout(() => {
         setMessage("");
         setError(false);
-      }, 3000);
+      }, 2500);
       return;
     }
     const financeData = {
@@ -84,28 +72,30 @@ const AddFinance = () => {
     };
 
     try {
-      const response = await axios.post("https://solsparrow-backend.onrender.com/api/finances", financeData);
+      const response = await axios.post(
+        "https://solsparrow-backend.onrender.com/api/finances",
+        financeData
+      );
       setMessage("Transaction added successfully!");
       setError(false);
       setRecentTransaction(response.data);
 
-      if (financeData.type === 'expense') {
-        eventBus.dispatch('expense-added', { amount: financeData.amount });
+      if (financeData.type === "expense") {
+        eventBus.dispatch("expense-added", { amount: financeData.amount });
       }
 
-      // Reset form
       setAmount("");
       setDescription("");
       setTimeout(() => {
         setMessage("");
-      }, 3000);
+      }, 2500);
     } catch (err) {
       setError(true);
       setMessage(err.response?.data?.message || "Error adding transaction.");
       setTimeout(() => {
         setMessage("");
         setError(false);
-      }, 3000);
+      }, 2500);
     }
   };
 
@@ -114,7 +104,7 @@ const AddFinance = () => {
     const newCategory = {
       id: Date.now(),
       name: customCategory.trim(),
-      is_custom: true
+      is_custom: true,
     };
     setCategories([...categories, newCategory]);
     setCategory(newCategory.name);
@@ -124,35 +114,35 @@ const AddFinance = () => {
   const handleRemoveCategory = (id) => {
     const newCategories = categories.filter((c) => c.id !== id);
     setCategories(newCategories);
-    if (category === categories.find(c => c.id === id)?.name) {
+    if (category === categories.find((c) => c.id === id)?.name) {
       setCategory(newCategories.length > 0 ? newCategories[0].name : "");
     }
   };
 
   return (
     <div className="add-finance-page">
-      <div className="hero-section">
-        <div className="hero-content">
-          <h1>Add a New Transaction</h1>
+      <div className="finance-hero-section">
+        <div className="finance-hero-content">
+          <h1>Add Transaction</h1>
           <p>Log your income and expenses to keep your finances in order.</p>
         </div>
       </div>
-      <div className="form-container">
+      <div className="finance-form-container">
         <form className="finance-form" onSubmit={handleSubmit}>
           <h2 className="form-title">Finance Details</h2>
           <div className="form-grid">
             <div className="type-selector">
               <button
                 type="button"
-                className={`type-button ${type === 'income' ? 'active-income' : ''}`}
-                onClick={() => setType('income')}
+                className={`type-button ${type === "income" ? "active-income" : ""}`}
+                onClick={() => setType("income")}
               >
                 <FaMoneyBillWave /> Income
               </button>
               <button
                 type="button"
-                className={`type-button ${type === 'expense' ? 'active-expense' : ''}`}
-                onClick={() => setType('expense')}
+                className={`type-button ${type === "expense" ? "active-expense" : ""}`}
+                onClick={() => setType("expense")}
               >
                 <FaMoneyCheckAlt /> Expense
               </button>
@@ -161,7 +151,9 @@ const AddFinance = () => {
             <div className="input-group">
               <label htmlFor="amount">Amount</label>
               <div className="input-with-icon">
-                <span className="icon"><FaRupeeSign /></span>
+                <span className="icon">
+                  <FaRupeeSign />
+                </span>
                 <input
                   type="number"
                   id="amount"
@@ -169,6 +161,8 @@ const AddFinance = () => {
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                   required
+                  min="0"
+                  step="0.01"
                 />
               </div>
             </div>
@@ -176,7 +170,9 @@ const AddFinance = () => {
             <div className="input-group">
               <label htmlFor="date">Date</label>
               <div className="input-with-icon">
-                <span className="icon"><FaCalendarAlt /></span>
+                <span className="icon">
+                  <FaCalendarAlt />
+                </span>
                 <input
                   type="date"
                   id="date"
@@ -188,13 +184,25 @@ const AddFinance = () => {
             </div>
 
             <div className="quick-dates">
-              <button type="button" className="quick-date-button" onClick={() => setDate(formatDate(new Date()))}>
+              <button
+                type="button"
+                className="quick-date-button"
+                onClick={() => setDate(formatDate(new Date()))}
+              >
                 <FaCalendarAlt /> Today
               </button>
-              <button type="button" className="quick-date-button" onClick={() => setDate(getYesterday())}>
+              <button
+                type="button"
+                className="quick-date-button"
+                onClick={() => setDate(getYesterday())}
+              >
                 <FaCalendarAlt /> Yesterday
               </button>
-              <button type="button" className="quick-date-button" onClick={() => setDate(getDayBefore())}>
+              <button
+                type="button"
+                className="quick-date-button"
+                onClick={() => setDate(getDayBefore())}
+              >
                 <FaCalendarAlt /> Day Before
               </button>
             </div>
@@ -206,12 +214,18 @@ const AddFinance = () => {
                   <button
                     key={cat.id}
                     type="button"
-                    className={`category-button ${category === cat.name ? 'active' : ''}`}
+                    className={`category-button ${category === cat.name ? "active" : ""}`}
                     onClick={() => setCategory(cat.name)}
                   >
                     {cat.name}
                     {cat.is_custom ? (
-                      <span className="remove-icon" onClick={(e) => { e.stopPropagation(); handleRemoveCategory(cat.id); }}>
+                      <span
+                        className="remove-icon"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRemoveCategory(cat.id);
+                        }}
+                      >
                         <FaTimes />
                       </span>
                     ) : null}
@@ -228,7 +242,11 @@ const AddFinance = () => {
                 value={customCategory}
                 onChange={(e) => setCustomCategory(e.target.value)}
               />
-              <button type="button" className="add-category-btn" onClick={handleAddCategory}>
+              <button
+                type="button"
+                className="add-category-btn"
+                onClick={handleAddCategory}
+              >
                 <FaPlus /> Add
               </button>
             </div>
@@ -236,16 +254,32 @@ const AddFinance = () => {
             <div className="input-group">
               <label>Payment Method</label>
               <div className="payment-methods">
-                <button type="button" className={`payment-button ${paymentMethod === 'Cash' ? 'active' : ''}`} onClick={() => setPaymentMethod('Cash')}>
+                <button
+                  type="button"
+                  className={`payment-button ${paymentMethod === "Cash" ? "active" : ""}`}
+                  onClick={() => setPaymentMethod("Cash")}
+                >
                   <FaMoneyBillWave className="icon" /> Cash
                 </button>
-                <button type="button" className={`payment-button ${paymentMethod === 'Card' ? 'active' : ''}`} onClick={() => setPaymentMethod('Card')}>
+                <button
+                  type="button"
+                  className={`payment-button ${paymentMethod === "Card" ? "active" : ""}`}
+                  onClick={() => setPaymentMethod("Card")}
+                >
                   <FaCreditCard className="icon" /> Card
                 </button>
-                <button type="button" className={`payment-button ${paymentMethod === 'Bank Transfer' ? 'active' : ''}`} onClick={() => setPaymentMethod('Bank Transfer')}>
+                <button
+                  type="button"
+                  className={`payment-button ${paymentMethod === "Bank Transfer" ? "active" : ""}`}
+                  onClick={() => setPaymentMethod("Bank Transfer")}
+                >
                   <FaWifi className="icon" /> Bank Transfer
                 </button>
-                <button type="button" className={`payment-button ${paymentMethod === 'UPI' ? 'active' : ''}`} onClick={() => setPaymentMethod('UPI')}>
+                <button
+                  type="button"
+                  className={`payment-button ${paymentMethod === "UPI" ? "active" : ""}`}
+                  onClick={() => setPaymentMethod("UPI")}
+                >
                   <FaMobileAlt className="icon" /> UPI
                 </button>
               </div>
@@ -254,7 +288,9 @@ const AddFinance = () => {
             <div className="input-group">
               <label htmlFor="description">Description</label>
               <div className="input-with-icon">
-                <span className="icon"><FaPen /></span>
+                <span className="icon">
+                  <FaPen />
+                </span>
                 <textarea
                   id="description"
                   placeholder="Add a description (optional)"
@@ -267,7 +303,11 @@ const AddFinance = () => {
           </div>
 
           <div className="action-buttons">
-            <button type="button" className="cancel-button" onClick={() => navigate('/finances/view')}>
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={() => navigate("/finances/view")}
+            >
               Cancel
             </button>
             <button type="submit" className="save-button">
@@ -285,9 +325,15 @@ const AddFinance = () => {
         {recentTransaction && (
           <div className="recent-transaction">
             <h3>Last Entry:</h3>
-            <p><strong>Type:</strong> {recentTransaction.type}</p>
-            <p><strong>Amount:</strong> ${recentTransaction.amount}</p>
-            <p><strong>Category:</strong> {recentTransaction.category}</p>
+            <p>
+              <strong>Type:</strong> {recentTransaction.type}
+            </p>
+            <p>
+              <strong>Amount:</strong> ₹{recentTransaction.amount}
+            </p>
+            <p>
+              <strong>Category:</strong> {recentTransaction.category}
+            </p>
           </div>
         )}
       </div>
