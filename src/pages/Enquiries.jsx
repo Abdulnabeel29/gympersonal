@@ -48,43 +48,28 @@ const Enquiries = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        console.log('Input change:', name, value); // Debug log
-        setFormData(prev => {
-            const newData = { ...prev, [name]: value };
-            console.log('Updated form data:', newData); // Debug log
-            return newData;
-        });
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        console.log('Submitting form data:', formData);
-        console.log('Form validation - name:', formData.name, 'phone:', formData.phone);
-        
-        // Validate required fields
         if (!formData.name || !formData.phone) {
             setMessage({ type: 'error', text: 'Name and phone number are required.' });
             setLoading(false);
             return;
         }
-        
         const url = editingEnquiry
             ? `https://solsparrow-backend.onrender.com/api/enquiries/${editingEnquiry.id}`
             : 'https://solsparrow-backend.onrender.com/api/enquiries';
         const method = editingEnquiry ? 'put' : 'post';
 
         try {
-            console.log('Making request to:', url, 'with method:', method);
-            const response = await axios[method](url, formData);
-            console.log('Response:', response.data);
+            await axios[method](url, formData);
             setMessage({ type: 'success', text: `Enquiry successfully ${editingEnquiry ? 'updated' : 'added'}.` });
             fetchEnquiries();
             closeModal();
         } catch (err) {
-            console.error('Error submitting form:', err);
-            console.error('Error response:', err.response?.data);
-            console.error('Error status:', err.response?.status);
             setMessage({ type: 'error', text: err.response?.data?.message || 'Failed to save enquiry.' });
         } finally {
             setLoading(false);
@@ -92,10 +77,9 @@ const Enquiries = () => {
     };
 
     const openModal = (enquiry = null) => {
-        console.log('Opening modal with enquiry:', enquiry); // Debug log
         if (enquiry) {
             setEditingEnquiry(enquiry);
-            const editData = {
+            setFormData({
                 name: enquiry.name,
                 phone: enquiry.phone,
                 email: enquiry.email || '',
@@ -104,17 +88,13 @@ const Enquiries = () => {
                 status: enquiry.status || 'New',
                 follow_up_date: enquiry.follow_up_date ? enquiry.follow_up_date.slice(0, 10) : '',
                 notes: enquiry.notes || ''
-            };
-            console.log('Setting edit data:', editData); // Debug log
-            setFormData(editData);
+            });
         } else {
             setEditingEnquiry(null);
-            const newData = {
+            setFormData({
                 name: '', phone: '', email: '', source: 'Walk-in', interest: 'Membership',
                 status: 'New', follow_up_date: '', notes: ''
-            };
-            console.log('Setting new data:', newData); // Debug log
-            setFormData(newData);
+            });
         }
         setShowModal(true);
     };
@@ -146,13 +126,15 @@ const Enquiries = () => {
 
     return (
         <div className="enquiries-page">
-            <div className="hero-section">
-                <h1>Enquiry CRM</h1>
-                <p>Manage all potential leads and track their journey from enquiry to membership.</p>
+            <div className="enquiries-hero-section">
+                <div className="enquiries-hero-content">
+                    <h1>Enquiry CRM</h1>
+                    <p>Manage all potential leads and track their journey from enquiry to membership.</p>
+                </div>
             </div>
 
             {message && (
-                <div className={`message-banner ${message.type === 'success' ? 'success' : 'error'}`}>
+                <div className={`enquiries-message-banner ${message.type === 'success' ? 'success' : 'error'}`}>
                     {message.text}
                 </div>
             )}
@@ -196,7 +178,11 @@ const Enquiries = () => {
                                         <div className="email-text">{enq.email}</div>
                                     </td>
                                     <td>{enq.interest}</td>
-                                    <td><span className={`status-badge status-${enq.status.toLowerCase()}`}>{enq.status}</span></td>
+                                    <td>
+                                        <span className={`status-badge status-${enq.status.toLowerCase().replace(' ', '-')}`}>
+                                            {enq.status}
+                                        </span>
+                                    </td>
                                     <td>{enq.follow_up_date ? new Date(enq.follow_up_date).toLocaleDateString() : 'N/A'}</td>
                                     <td>
                                         <div className="enquiries-action-buttons">
@@ -284,4 +270,4 @@ const Enquiries = () => {
     );
 };
 
-export default Enquiries; 
+export default Enquiries;
