@@ -58,14 +58,20 @@
   box-shadow: none;
 }
 .staff-page .btn-primary {
-  background-color: #28B295;
-  color: #23272f;
+  background-color: #28B295 !important;
+  color: #23272f !important;
+  border: none !important;
+  box-shadow: none !important;
 }
+
 .staff-page .btn-primary:hover,
 .staff-page .btn:hover:not(:disabled) {
-  background: #28B295;
-  color: #23272f;
+  background: #28B295 !important;
+  color: #23272f !important;
+  border: none !important;
+  box-shadow: none !important;
 }
+
 .staff-page .btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
