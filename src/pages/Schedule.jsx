@@ -3,7 +3,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import axios from "axios";
 import "./Schedule.css";
-import { FaCalendarAlt, FaPlus, FaUndo, FaTrash, FaFilePdf, FaFilter, FaEdit } from "react-icons/fa";
+import { FaCalendarAlt, FaPlus, FaUndo, FaTrash, FaFilePdf, FaFilter, FaEdit, FaClock } from "react-icons/fa";
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const times = [
@@ -35,6 +35,16 @@ const Schedule = () => {
   const [filters, setFilters] = useState({ member: "", category: "", trainer: "" });
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+
+  // Custom schedule modal state
+  const [showCustomModal, setShowCustomModal] = useState(false);
+  const [customForm, setCustomForm] = useState({
+    member: "",
+    category: "Yoga",
+    trainer: "",
+    session_start: "",
+    session_end: "",
+  });
 
   const scheduleRef = useRef();
 
@@ -83,6 +93,11 @@ const Schedule = () => {
 
   const handleInputChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  // Custom schedule input change
+  const handleCustomInputChange = (e) => {
+    setCustomForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleBookingSubmit = async () => {
@@ -141,6 +156,37 @@ const Schedule = () => {
       setReminder("");
     } catch (err) {
       setErrorMessage("Failed to save booking. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Custom schedule submit
+  const handleCustomScheduleSubmit = async (e) => {
+    e.preventDefault();
+    if (!customForm.member || !customForm.category || !customForm.trainer || !customForm.session_start || !customForm.session_end) {
+      setErrorMessage("Please fill all fields for custom schedule.");
+      return;
+    }
+    try {
+      setLoading(true);
+      setErrorMessage("");
+      // Save as a booking with extra fields
+      await axios.post("https://solsparrow-backend.onrender.com/api/schedule/custom", {
+        ...customForm,
+      });
+      setSuccessMessage("Custom schedule added successfully");
+      setShowCustomModal(false);
+      setCustomForm({
+        member: "",
+        category: "Yoga",
+        trainer: "",
+        session_start: "",
+        session_end: "",
+      });
+      fetchBookings();
+    } catch (err) {
+      setErrorMessage("Failed to add custom schedule");
     } finally {
       setLoading(false);
     }
@@ -356,12 +402,19 @@ const Schedule = () => {
           </div>
         )}
 
-        <div className="schedule-actions">
+        <div className="schedule-actions" style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
           <button className="btn" onClick={handleUndo} disabled={!lastBooking || loading}>
             <FaUndo /> Undo Last
           </button>
           <button className="btn btn-danger" onClick={handleReset} disabled={loading}>
             <FaTrash /> Reset Schedule
+          </button>
+          <button
+            className="btn"
+            style={{ marginLeft: "auto" }}
+            onClick={() => setShowCustomModal(true)}
+          >
+            <FaClock /> Custom Schedule
           </button>
         </div>
 
@@ -394,6 +447,65 @@ const Schedule = () => {
             </React.Fragment>
           ))}
         </div>
+
+        {/* Custom Schedule Modal */}
+        {showCustomModal && (
+          <div className="modal-overlay">
+            <div className="booking-modal">
+              <h3>Custom Schedule</h3>
+              <form onSubmit={handleCustomScheduleSubmit}>
+                <div className="form-group">
+                  <label>Member</label>
+                  <select name="member" value={customForm.member} onChange={handleCustomInputChange} required>
+                    <option value="">Select Member</option>
+                    {members.map((m) => <option key={m} value={m}>{m}</option>)}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Category</label>
+                  <select name="category" value={customForm.category} onChange={handleCustomInputChange} required>
+                    {Object.keys(categoryLimits).map((cat) => <option key={cat} value={cat}>{cat}</option>)}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Trainer</label>
+                  <select name="trainer" value={customForm.trainer} onChange={handleCustomInputChange} required>
+                    <option value="">Select Trainer</option>
+                    {trainers.map((trainer) => <option key={trainer.id} value={trainer.name}>{trainer.name}</option>)}
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Session Start Time</label>
+                  <input
+                    type="datetime-local"
+                    name="session_start"
+                    value={customForm.session_start}
+                    onChange={handleCustomInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Session End Time</label>
+                  <input
+                    type="datetime-local"
+                    name="session_end"
+                    value={customForm.session_end}
+                    onChange={handleCustomInputChange}
+                    required
+                  />
+                </div>
+                <div className="modal-actions">
+                  <button type="submit" disabled={loading}>
+                    {loading ? "Saving..." : "Add Custom Schedule"}
+                  </button>
+                  <button type="button" className="btn-cancel" onClick={() => setShowCustomModal(false)}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
         {selectedSlot && (
           <div className="modal-overlay">
