@@ -13,6 +13,7 @@ const AddStaffForm = ({ onSave, onCancel, staff }) => {
       photo: "",
       status: "Active",
       salary: "",
+      employment_type: "Full-time", // New field
     }
   );
 
@@ -27,6 +28,7 @@ const AddStaffForm = ({ onSave, onCancel, staff }) => {
         photo: staff.photo || "",
         status: staff.status || "Active",
         salary: staff.salary || "",
+        employment_type: staff.employment_type || "Full-time",
       });
     }
   }, [staff]);
@@ -107,6 +109,19 @@ const AddStaffForm = ({ onSave, onCancel, staff }) => {
               <option value="Active">Active</option>
               <option value="Inactive">Inactive</option>
               <option value="On Leave">On Leave</option>
+            </select>
+          </div>
+          <div className="staff-form-group">
+            <label htmlFor="employment_type">Employment Type</label>
+            <select
+              id="employment_type"
+              name="employment_type"
+              value={formData.employment_type}
+              onChange={handleChange}
+              required
+            >
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
             </select>
           </div>
         </div>
