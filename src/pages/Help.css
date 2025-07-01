@@ -1,6 +1,6 @@
 .help-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1C1C1E 0%, #2A2A2C 100%);
+  background: linear-gradient(135deg, #1C1C1E 0%, #23272f 100%);
   color: #E3E3E0;
   padding: 2rem;
 }
@@ -9,15 +9,15 @@
   text-align: center;
   margin-bottom: 3rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #28B295 0%, #2A9D8A 100%);
+  background: linear-gradient(135deg, #23272f 0%, #1C1C1E 100%);
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(40, 178, 149, 0.13), 0 2px 16px rgba(0,0,0,0.18);
 }
 
 .help-header h1 {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #1C1C1E;
+  color: #28B295;
   margin: 0 0 1rem 0;
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@
 
 .help-header p {
   font-size: 1.2rem;
-  color: #1C1C1E;
+  color: #E3E3E0;
   opacity: 0.9;
   margin: 0;
 }
@@ -41,11 +41,10 @@
 }
 
 .help-sidebar {
-  background: linear-gradient(145deg, #2A2A2C 0%, #1C1C1E 100%);
+  background: #23272f;
   border-radius: 16px;
   padding: 1.5rem;
-  border: 2px solid #28B295;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(40, 178, 149, 0.10), 0 2px 16px rgba(0,0,0,0.16);
   height: fit-content;
   position: sticky;
   top: 2rem;
@@ -58,8 +57,8 @@
 }
 
 .help-nav-item {
-  background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
-  border: 2px solid #28B295;
+  background: #1C1C1E;
+  border: 2px solid #28B295; /* Teal border only for buttons */
   border-radius: 12px;
   padding: 1rem 1.25rem;
   color: #E3E3E0;
@@ -71,20 +70,20 @@
   text-align: left;
   font-size: 1rem;
   font-weight: 600;
+  box-shadow: 0 2px 8px rgba(40, 178, 149, 0.08), 0 1px 6px rgba(0,0,0,0.10);
 }
 
-.help-nav-item:hover {
-  background: linear-gradient(135deg, #28B295 0%, #2A9D8A 100%);
-  color: #1C1C1E;
+.help-nav-item:hover,
+.help-nav-item.active {
+  background: #28B295;
+  color: #23272f;
+  border-color: #28B295;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(40, 178, 149, 0.3);
+  box-shadow: 0 6px 20px rgba(40, 178, 149, 0.13), 0 2px 12px rgba(0,0,0,0.14);
 }
 
 .help-nav-item.active {
-  background: linear-gradient(135deg, #D6F84C 0%, #C4E83C 100%);
-  color: #1C1C1E;
-  border-color: #D6F84C;
-  box-shadow: 0 6px 20px rgba(214, 248, 76, 0.3);
+  font-weight: 800;
 }
 
 .nav-icon {
@@ -100,6 +99,7 @@
   font-size: 0.9rem;
   opacity: 0.7;
   transition: transform 0.3s ease;
+  color: inherit;
 }
 
 .help-nav-item:hover .nav-arrow,
@@ -109,11 +109,10 @@
 }
 
 .help-main {
-  background: linear-gradient(145deg, #2A2A2C 0%, #1C1C1E 100%);
+  background: #23272f;
   border-radius: 16px;
   padding: 2rem;
-  border: 2px solid #28B295;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(40, 178, 149, 0.10), 0 2px 16px rgba(0,0,0,0.16);
 }
 
 .help-content-wrapper {
@@ -123,7 +122,7 @@
 .help-content h3 {
   font-size: 2rem;
   font-weight: 800;
-  color: #D6F84C;
+  color: #28B295;
   margin: 0 0 1.5rem 0;
   border-bottom: 3px solid #28B295;
   padding-bottom: 0.5rem;
@@ -141,14 +140,15 @@
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba(40, 178, 149, 0.1) 0%, rgba(28, 28, 30, 0.8) 100%);
+  background: #23272f;
   border-radius: 12px;
-  border: 1px solid #28B295;
+  border: 1.5px solid #28B295;
+  box-shadow: 0 2px 8px rgba(40, 178, 149, 0.08), 0 1px 6px rgba(0,0,0,0.10);
 }
 
 .step-number {
-  background: linear-gradient(135deg, #28B295, #2A9D8A);
-  color: #1C1C1E;
+  background: #28B295;
+  color: #23272f;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -158,10 +158,11 @@
   font-weight: 800;
   font-size: 1.2rem;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(40, 178, 149, 0.10);
 }
 
 .step-content h4 {
-  color: #D6F84C;
+  color: #28B295;
   font-size: 1.3rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
@@ -178,16 +179,15 @@
 }
 
 .feature-card {
-  background: linear-gradient(135deg, #2A2A2C 0%, #1C1C1E 100%);
-  border: 2px solid #28B295;
+  background: #23272f;
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(40, 178, 149, 0.08), 0 1px 8px rgba(0,0,0,0.10);
 }
 
 .feature-card h4 {
-  color: #D6F84C;
+  color: #28B295;
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
@@ -209,30 +209,30 @@
 }
 
 .feature-card strong {
-  color: #D6F84C;
+  color: #28B295;
   font-weight: 700;
 }
 
 .tip-box {
-  background: linear-gradient(135deg, rgba(214, 248, 76, 0.1) 0%, rgba(28, 28, 30, 0.8) 100%);
-  border: 2px solid #D6F84C;
+  background: #1C1C1E;
   border-radius: 12px;
   padding: 1.5rem;
   margin: 1.5rem 0;
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  box-shadow: 0 2px 8px rgba(40, 178, 149, 0.08), 0 1px 6px rgba(0,0,0,0.10);
 }
 
 .tip-box svg {
-  color: #D6F84C;
+  color: #28B295;
   font-size: 1.5rem;
   flex-shrink: 0;
   margin-top: 0.25rem;
 }
 
 .tip-box h4 {
-  color: #D6F84C;
+  color: #28B295;
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0 0.75rem 0;
@@ -254,15 +254,16 @@
 }
 
 .trouble-card {
-  background: linear-gradient(135deg, rgba(255, 113, 91, 0.1) 0%, rgba(28, 28, 30, 0.8) 100%);
-  border: 2px solid #FF715B;
+  background: #23272f;
+  border: 2px solid #E74C3C;
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.08), 0 1px 8px rgba(0,0,0,0.10);
 }
 
 .trouble-card h4 {
-  color: #FF715B;
+  color: #E74C3C;
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
@@ -276,16 +277,16 @@
 }
 
 .trouble-card strong {
-  color: #FF715B;
+  color: #E74C3C;
   font-weight: 700;
 }
 
 .contact-info {
-  background: linear-gradient(135deg, rgba(40, 178, 149, 0.1) 0%, rgba(28, 28, 30, 0.8) 100%);
-  border: 2px solid #28B295;
+  background: #1C1C1E;
   border-radius: 12px;
   padding: 1.5rem;
   margin-top: 2rem;
+  box-shadow: 0 2px 8px rgba(40, 178, 149, 0.08), 0 1px 6px rgba(0,0,0,0.10);
 }
 
 .contact-info h4 {
@@ -375,4 +376,4 @@
   .help-nav-item {
     min-width: auto;
   }
-} 
+}
