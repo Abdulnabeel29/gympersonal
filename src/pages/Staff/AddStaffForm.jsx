@@ -33,22 +33,21 @@ const AddStaffForm = ({ onSave, onCancel, staff }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    let val = value;
+    // Restrict phone to 10 digits only (numbers only)
+    if (name === "phone") {
+      val = value.replace(/\D/g, "").slice(0, 10);
+    }
+    setFormData((prev) => ({ ...prev, [name]: val }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted with data:', formData);
-    console.log('Form validation - name:', formData.name, 'phone:', formData.phone, 'role:', formData.role);
-    
     // Check if required fields are filled
     if (!formData.name || !formData.phone || !formData.role) {
-      console.error('Required fields missing:', { name: formData.name, phone: formData.phone, role: formData.role });
       alert('Please fill in all required fields (Name, Phone, Role)');
       return;
     }
-    
-    console.log('Calling onSave function...');
     onSave(formData);
   };
 
@@ -72,7 +71,19 @@ const AddStaffForm = ({ onSave, onCancel, staff }) => {
           </div>
           <div className="staff-form-group">
             <label htmlFor="phone">Phone</label>
-            <input id="phone" name="phone" value={formData.phone} onChange={handleChange} placeholder="Enter phone number" required />
+            <input
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Enter 10-digit phone number"
+              required
+              pattern="^\d{10}$"
+              title="Enter a valid 10-digit number"
+              maxLength={10}
+              inputMode="numeric"
+              autoComplete="off"
+            />
           </div>
           <div className="staff-form-group">
             <label htmlFor="email">Email</label>
@@ -113,4 +124,3 @@ const AddStaffForm = ({ onSave, onCancel, staff }) => {
 };
 
 export default AddStaffForm;
-
