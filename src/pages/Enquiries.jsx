@@ -46,9 +46,14 @@ const Enquiries = () => {
         }
     };
 
+    // Restrict phone to 10 digits only (numbers only)
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        let val = value;
+        if (name === "phone") {
+            val = value.replace(/\D/g, "").slice(0, 10);
+        }
+        setFormData(prev => ({ ...prev, [name]: val }));
     };
 
     const handleFormSubmit = async (e) => {
@@ -210,19 +215,48 @@ const Enquiries = () => {
                             <div className="enquiries-form-grid">
                                 <div className="enquiries-form-group">
                                     <label>Name</label>
-                                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        required
+                                        placeholder="Enter full name"
+                                    />
                                 </div>
                                 <div className="enquiries-form-group">
                                     <label>Phone</label>
-                                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required />
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
+                                        required
+                                        pattern="^\d{10}$"
+                                        title="Enter a valid 10-digit number"
+                                        maxLength={10}
+                                        inputMode="numeric"
+                                        autoComplete="off"
+                                        placeholder="10-digit phone number"
+                                    />
                                 </div>
                                 <div className="enquiries-form-group">
                                     <label>Email (Optional)</label>
-                                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        placeholder="Enter email address"
+                                    />
                                 </div>
                                 <div className="enquiries-form-group">
                                     <label>Source</label>
-                                    <select name="source" value={formData.source} onChange={handleInputChange}>
+                                    <select
+                                        name="source"
+                                        value={formData.source}
+                                        onChange={handleInputChange}
+                                    >
                                         <option>Walk-in</option>
                                         <option>Phone Call</option>
                                         <option>Website</option>
@@ -232,7 +266,11 @@ const Enquiries = () => {
                                 </div>
                                 <div className="enquiries-form-group">
                                     <label>Interest</label>
-                                    <select name="interest" value={formData.interest} onChange={handleInputChange}>
+                                    <select
+                                        name="interest"
+                                        value={formData.interest}
+                                        onChange={handleInputChange}
+                                    >
                                         <option>Membership</option>
                                         <option>Personal Training</option>
                                         <option>Zumba</option>
@@ -242,7 +280,11 @@ const Enquiries = () => {
                                 </div>
                                 <div className="enquiries-form-group">
                                     <label>Status</label>
-                                    <select name="status" value={formData.status} onChange={handleInputChange}>
+                                    <select
+                                        name="status"
+                                        value={formData.status}
+                                        onChange={handleInputChange}
+                                    >
                                         <option>New</option>
                                         <option>Follow-up</option>
                                         <option>Converted</option>
@@ -252,14 +294,27 @@ const Enquiries = () => {
                             </div>
                             <div className="enquiries-form-group">
                                 <label>Follow-up Date (Optional)</label>
-                                <input type="date" name="follow_up_date" value={formData.follow_up_date} onChange={handleInputChange} />
+                                <input
+                                    type="date"
+                                    name="follow_up_date"
+                                    value={formData.follow_up_date}
+                                    onChange={handleInputChange}
+                                    placeholder="Select follow-up date"
+                                />
                             </div>
                             <div className="enquiries-form-group">
                                 <label>Notes (Optional)</label>
-                                <textarea name="notes" value={formData.notes} onChange={handleInputChange}></textarea>
+                                <textarea
+                                    name="notes"
+                                    value={formData.notes}
+                                    onChange={handleInputChange}
+                                    placeholder="Add any notes or comments"
+                                ></textarea>
                             </div>
                             <div className="enquiries-form-actions">
-                                <button type="submit" className="enquiries-btn-primary" disabled={loading}>{loading ? 'Saving...' : 'Save Enquiry'}</button>
+                                <button type="submit" className="enquiries-btn-primary" disabled={loading}>
+                                    {loading ? 'Saving...' : 'Save Enquiry'}
+                                </button>
                                 <button type="button" className="enquiries-btn-secondary" onClick={closeModal}>Close</button>
                             </div>
                         </form>
