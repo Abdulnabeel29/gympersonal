@@ -10,7 +10,8 @@ import {
   FaUserTie,
   FaSync,
   FaPlay,
-  FaPause
+  FaPause,
+  FaTimes
 } from "react-icons/fa";
 import "./RecurringTransactions.css";
 
@@ -229,7 +230,41 @@ const RecurringTransactions = () => {
 
       {showForm && (
         <div className="form-overlay">
-          <div className="recurring-form-container">
+          <div className="recurring-form-container" style={{ position: 'relative' }}>
+            <button
+              onClick={resetForm}
+              style={{
+                position: 'absolute',
+                top: '15px',
+                right: '15px',
+                background: 'none',
+                border: 'none',
+                fontSize: '20px',
+                cursor: 'pointer',
+                color: '#666',
+                padding: '5px',
+                borderRadius: '50%',
+                width: '35px',
+                height: '35px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s ease',
+                zIndex: 10
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#f0f0f0';
+                e.target.style.color = '#333';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'none';
+                e.target.style.color = '#666';
+              }}
+              title="Close"
+            >
+              <FaTimes />
+            </button>
+            
             <h3>{editingId ? "Edit" : "Add"} Recurring Transaction</h3>
             <form onSubmit={handleSubmit}>
               <div className="form-section">
