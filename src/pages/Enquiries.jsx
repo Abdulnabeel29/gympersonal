@@ -206,10 +206,42 @@ const Enquiries = () => {
 
             {showModal && (
                 <div className="modal-overlay">
-                    <div className="modal-content">
+                    <div className="modal-content" style={{ position: 'relative' }}>
                         <div className="modal-header">
                             <h2>{editingEnquiry ? 'Edit Enquiry' : 'Add New Enquiry'}</h2>
-                            <button className="close-btn" onClick={closeModal}><FaTimes /></button>
+                            <button 
+                                className="close-btn" 
+                                onClick={closeModal}
+                                style={{
+                                    position: 'absolute',
+                                    top: '20px',
+                                    right: '20px',
+                                    background: 'none',
+                                    border: 'none',
+                                    fontSize: '18px',
+                                    cursor: 'pointer',
+                                    color: '#666',
+                                    padding: '8px',
+                                    borderRadius: '50%',
+                                    width: '36px',
+                                    height: '36px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'all 0.2s ease',
+                                    zIndex: '10'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.backgroundColor = '#f0f0f0';
+                                    e.target.style.color = '#333';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.backgroundColor = 'transparent';
+                                    e.target.style.color = '#666';
+                                }}
+                            >
+                                <FaTimes />
+                            </button>
                         </div>
                         <form onSubmit={handleFormSubmit}>
                             <div className="enquiries-form-grid">
