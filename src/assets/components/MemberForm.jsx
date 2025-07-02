@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCalendarAlt, FaTimes } from "react-icons/fa";
 import "./MemberForm.css";
 
 const initialState = {
@@ -113,6 +113,15 @@ const MemberForm = ({ member, onSave, onClose }) => {
   return (
     <div className="member-form-modal">
       <form className="member-form-container member-form-scrollable" onSubmit={handleSubmit}>
+        <button 
+          type="button" 
+          className="close-button"
+          onClick={onClose}
+          title="Close"
+        >
+          <FaTimes />
+        </button>
+
         <h2>{member ? "Edit Member" : "Add Member"}</h2>
 
         <div style={{ marginBottom: "1.2rem", color: "#28B295", fontWeight: 700, fontSize: "1.08rem" }}>

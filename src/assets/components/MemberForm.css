@@ -23,12 +23,44 @@
   position: relative;
 }
 
+/* Close Button Styles */
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  color: #b0b3b8;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e3e3e0;
+  transform: scale(1.1);
+}
+
+.close-button:active {
+  transform: scale(0.95);
+}
+
 .member-form-container h2 {
   color: #28B295;
   font-weight: 700;
   margin-bottom: 1.5rem;
   text-align: center;
   letter-spacing: 1px;
+  padding-right: 3rem; /* Add padding to avoid overlap with close button */
 }
 
 .form-grid {
@@ -120,6 +152,19 @@
     min-width: 0;
     padding: 1.2rem 0.5rem 1rem 0.5rem;
   }
+  
+  .close-button {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .member-form-container h2 {
+    padding-right: 2.5rem;
+  }
+  
   .form-grid {
     grid-template-columns: 1fr;
     gap: 0.7rem;
