@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Staff.css";
-import { FaUser, FaBriefcase, FaPhone, FaEnvelope, FaMapMarkerAlt, FaMoneyBillWave, FaImage } from 'react-icons/fa';
+import { FaUser, FaBriefcase, FaPhone, FaEnvelope, FaMapMarkerAlt, FaMoneyBillWave, FaImage, FaTimes } from 'react-icons/fa';
 
 const AddStaffForm = ({ onSave, onCancel, staff }) => {
   const [formData, setFormData] = useState(
@@ -55,7 +55,42 @@ const AddStaffForm = ({ onSave, onCancel, staff }) => {
 
   return (
     <div className="staff-add-form-container">
-      <form onSubmit={handleSubmit} className="staff-add-form">
+      <form onSubmit={handleSubmit} className="staff-add-form" style={{ position: 'relative' }}>
+        <button
+          type="button"
+          onClick={onCancel}
+          style={{
+            position: 'absolute',
+            top: '15px',
+            right: '15px',
+            background: 'none',
+            border: 'none',
+            fontSize: '20px',
+            cursor: 'pointer',
+            color: '#666',
+            padding: '5px',
+            borderRadius: '50%',
+            width: '30px',
+            height: '30px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.2s ease',
+            zIndex: 10
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = '#f0f0f0';
+            e.target.style.color = '#333';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'none';
+            e.target.style.color = '#666';
+          }}
+          title="Close"
+        >
+          <FaTimes />
+        </button>
+        
         <h2>{staff ? 'Edit Staff Member' : 'Add New Staff Member'}</h2>
         <div className="staff-form-grid">
           <div className="staff-form-group">
