@@ -3,7 +3,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import axios from "axios";
 import "./Schedule.css";
-import { FaCalendarAlt, FaPlus, FaUndo, FaTrash, FaFilePdf, FaFilter, FaEdit, FaClock } from "react-icons/fa";
+import { FaCalendarAlt, FaPlus, FaUndo, FaTrash, FaFilePdf, FaFilter, FaEdit, FaClock, FaTimes } from "react-icons/fa";
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const times = [
@@ -317,6 +317,24 @@ const Schedule = () => {
     setFilters(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const closeCustomModal = () => {
+    setShowCustomModal(false);
+    setCustomForm({
+      member: "",
+      category: "Yoga",
+      trainer: "",
+      session_start: "",
+      session_end: "",
+    });
+  };
+
+  const closeBookingModal = () => {
+    setSelectedSlot(null);
+    setForm({ member: "", category: "Yoga", trainer: "" });
+    setEditIndex(null);
+    setReminder("");
+  };
+
   const renderBookings = (day, time) => {
     const key = `${day}-${time}`;
     const slotBookings = (bookings[key] || []).filter(booking => {
@@ -451,7 +469,39 @@ const Schedule = () => {
         {/* Custom Schedule Modal */}
         {showCustomModal && (
           <div className="modal-overlay">
-            <div className="booking-modal">
+            <div className="booking-modal" style={{ position: 'relative' }}>
+              <button 
+                onClick={closeCustomModal}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '18px',
+                  cursor: 'pointer',
+                  color: '#666',
+                  padding: '5px',
+                  borderRadius: '50%',
+                  width: '28px',
+                  height: '28px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.2s ease',
+                  zIndex: '10',
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = '#f0f0f0';
+                  e.target.style.color = '#333';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.color = '#666';
+                }}
+              >
+                <FaTimes />
+              </button>
               <h3>Custom Schedule</h3>
               <form onSubmit={handleCustomScheduleSubmit}>
                 <div className="form-group">
@@ -498,7 +548,7 @@ const Schedule = () => {
                   <button type="submit" disabled={loading}>
                     {loading ? "Saving..." : "Add Custom Schedule"}
                   </button>
-                  <button type="button" className="btn-cancel" onClick={() => setShowCustomModal(false)}>
+                  <button type="button" className="btn-cancel" onClick={closeCustomModal}>
                     Cancel
                   </button>
                 </div>
@@ -509,7 +559,39 @@ const Schedule = () => {
 
         {selectedSlot && (
           <div className="modal-overlay">
-            <div className="booking-modal">
+            <div className="booking-modal" style={{ position: 'relative' }}>
+              <button 
+                onClick={closeBookingModal}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '18px',
+                  cursor: 'pointer',
+                  color: '#666',
+                  padding: '5px',
+                  borderRadius: '50%',
+                  width: '28px',
+                  height: '28px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all 0.2s ease',
+                  zIndex: '10',
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = '#f0f0f0';
+                  e.target.style.color = '#333';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.color = '#666';
+                }}
+              >
+                <FaTimes />
+              </button>
               <h3>{editIndex !== null ? "Edit Booking" : "New Booking"}</h3>
               <p>{`Scheduling for ${selectedSlot.day} at ${selectedSlot.time}`}</p>
               {reminder && <div className="reminder-msg">{reminder}</div>}
@@ -549,7 +631,7 @@ const Schedule = () => {
                 <button onClick={handleBookingSubmit} disabled={loading || !form.member}>
                   {loading ? "Saving..." : (editIndex !== null ? "Update Booking" : "Confirm Booking")}
                 </button>
-                <button className="btn-cancel" onClick={() => setSelectedSlot(null)}>Cancel</button>
+                <button className="btn-cancel" onClick={closeBookingModal}>Cancel</button>
               </div>
             </div>
           </div>
